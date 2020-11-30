@@ -1,3 +1,4 @@
+// ©Arthurdw
 use super::printer::{Logger};
 
 pub fn generate(logger: Logger, input_path: &str) {

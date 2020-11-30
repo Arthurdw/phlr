@@ -1,3 +1,4 @@
+// ©Arthurdw
 pub struct Verbose {
     pub intensity: VerboseIntensity,
     pub intensity_value: u64,

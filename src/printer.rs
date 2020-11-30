@@ -1,3 +1,4 @@
+// ©Arthurdw
 extern crate termion;
 
 use super::verbose::{Verbose, VerboseIntensity};

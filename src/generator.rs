@@ -19,7 +19,6 @@ pub fn generate(logger: Logger, input_path: &str, output_path: Option<&str>) {
         let path_splitted_file_name: Vec<&str> = input_path.split("/").collect();
         let full_file_name = path_splitted_file_name.last().unwrap().to_string();
         logger.debug(&format!("Full filename: \"{}\"", &full_file_name));
-    
         let extension_splitted_file_name: Vec<&str> = full_file_name.split(".").collect();
         out = extension_splitted_file_name.first().unwrap().to_string();
         logger.debug(&format!("Filename: \"{}\"", &out));
@@ -29,11 +28,20 @@ pub fn generate(logger: Logger, input_path: &str, output_path: Option<&str>) {
 
     logger.debug(&format!("Destination folder: \"{}\"", out));
 
-
-    if Path::new(&format!("/{}/", out)).exists() {
-        logger.error(&format!("Folder with name \"{}\" already exists in current directory.", out));
-        return logger.error("Omit a custom output folder name using --out <name>.")
+    if Path::new(&format!("{}/", out)).exists() {
+        logger.error(&format!(
+            "Folder with name \"{}\" already exists in current directory.",
+            out
+        ));
+        return logger.error("Omit a custom output folder name using --out <name>.");
     }
 
-    logger.info(&format!("Processing file: \"{}\"", input_path));
+    logger.debug(&format!("Creating directory: \"{}\"", out));
+    match fs::create_dir(&format!("{}/", out)) {
+        Ok(_) => logger.info(&format!("Creating destination directory: \"{}\"", out)),
+        Err(e) => {
+            logger.error("An error occured while trying to create the destination directory.");
+            logger.fatal(&e.to_string())
+        }
+    }
 }

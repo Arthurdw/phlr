@@ -30,8 +30,16 @@ fn main() {
                         .long("source")
                         .takes_value(true)
                         .required(true)
-                        .help("The output file.")
+                        .help("The input file.")
                         .index(1),
+                )
+                .arg(
+                    Arg::with_name("output")
+                        .short("-O")
+                        .long("out")
+                        .takes_value(true)
+                        .help("The output file.")
+                        // .index(2),
                 ),
         )
         .get_matches();
@@ -47,7 +55,11 @@ fn main() {
     if let Some(matches) = matches.subcommand_matches("generate") {
         logger.print_log_mode();
         logger.debug("Sucommand match found with \"generate\".");
-        generator::generate(logger, matches.value_of("source").expect("output.txt"), None);
+        generator::generate(
+            logger,
+            matches.value_of("source").expect("input.txt"),
+            matches.value_of("output"),
+        );
     } else {
         logger.warn("Please provide a valid subcommand or argument.");
         logger.warn(&format!(

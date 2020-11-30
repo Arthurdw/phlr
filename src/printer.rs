@@ -30,44 +30,37 @@ impl Logger {
         let formatted_message = self.inner_formatter(
             "debug",
             message,
-            &format!("{}", color::Fg(color::LightBlue)),
+            &color::Fg(color::LightMagenta).to_string(),
         );
-        self.inner_printer(&formatted_message, 5)
+
+        self.inner_printer(&formatted_message, 1)
     }
 
-    pub fn info(&self, message: &str) {
-        let formatted_message = self.inner_formatter(
-            "info",
-            message,
-            &format!("{}", color::Fg(color::LightBlue)),
-        );
+    pub fn critical(&self, message: &str) {
+        let formatted_message =
+            self.inner_formatter("critical", message, &color::Fg(color::Red).to_string());
 
-        // let formatted_message = &format!(
-        //     "{color}{bold}info:{reset} {message}",
-        //     color = color::Fg(color::LightBlue),
-        //     bold = style::Bold,
-        //     reset = style::Reset,
-        //     message = message
-        // );
-
-        self.inner_printer(&formatted_message, 5)
+        self.inner_printer(&formatted_message, 2)
     }
 
     pub fn error(&self, message: &str) {
-        let formatted_message = self.inner_formatter(
-            "error",
-            message,
-            &format!("{}", color::Fg(color::LightRed)),
-        );
-
-        // let formatted_message = &format!(
-        //     "{color}{bold}error:{reset} {message}",
-        //     color = color::Fg(color::LightRed),
-        //     bold = style::Bold,
-        //     reset = style::Reset,
-        //     message = message
-        // );
+        let formatted_message =
+            self.inner_formatter("error", message, &color::Fg(color::LightRed).to_string());
 
         self.inner_printer(&formatted_message, 3)
+    }
+
+    pub fn warn(&self, message: &str) {
+        let formatted_message =
+            self.inner_formatter("warn", message, &color::Fg(color::LightYellow).to_string());
+
+        self.inner_printer(&formatted_message, 4)
+    }
+
+    pub fn info(&self, message: &str) {
+        let formatted_message =
+            self.inner_formatter("info", message, &color::Fg(color::LightBlue).to_string());
+
+        self.inner_printer(&formatted_message, 5)
     }
 }

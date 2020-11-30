@@ -14,7 +14,11 @@ impl Verbose {
                 5 => VerboseIntensity::INFO,
                 0 | _ => VerboseIntensity::CRITICAL,
             },
-            intensity_value: intensity_value,
+            intensity_value: if intensity_value == 0 {
+                2
+            } else {
+                intensity_value
+            },
         }
     }
 }

@@ -39,7 +39,7 @@ fn main() {
     let occurences = matches.occurrences_of("v");
 
     let logger = printer::Logger {
-        intensity: verbose::Verbose::from_intensity_value(occurences),
+        intensity: verbose::Verbose::new(occurences),
     };
 
     logger.debug("Successfully created logger object.");
@@ -47,7 +47,7 @@ fn main() {
     if let Some(matches) = matches.subcommand_matches("generate") {
         logger.print_log_mode();
         logger.debug("Sucommand match found with \"generate\".");
-        generator::generate(logger, matches.value_of("source").expect("output.txt"));
+        generator::generate(logger, matches.value_of("source").expect("output.txt"), None);
     } else {
         logger.error("Please provide a valid subcommand or argument.");
         logger.error(&format!(

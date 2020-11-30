@@ -5,7 +5,7 @@ pub struct Verbose {
 }
 
 impl Verbose {
-    pub fn from_intensity_value(intensity_value: u64) -> Verbose {
+    pub fn new(intensity_value: u64) -> Verbose {
         Verbose {
             intensity: match intensity_value {
                 1 => VerboseIntensity::DEBUG,

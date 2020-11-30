@@ -1,15 +1,5 @@
 extern crate termion;
 
-<<<<<<< HEAD
-use termion::{color, style};
-
-pub fn error(message: &str) {
-    println!("{red}{bold}error:{reset} {message}", red=color::Fg(color::LightRed), bold=style::Bold, reset=style::Reset, message=message);
-}
-
-pub fn info(message: &str) {
-    println!("{blue}{bold}info:{reset} {message}", blue=color::Fg(color::LightBlue), bold=style::Bold, reset=style::Reset, message=message);
-=======
 use super::verbose::Verbose;
 use termion::{color, style};
 
@@ -80,5 +70,4 @@ impl Logger {
 
         self.inner_printer(&formatted_message, 3)
     }
->>>>>>> f423c26 (Improved code.)
 }

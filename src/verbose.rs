@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 pub struct Verbose {
     pub intensity: VerboseIntensity,
     pub intensity_value: u64,
@@ -21,7 +19,6 @@ impl Verbose {
     }
 }
 
->>>>>>> f423c26 (Improved code.)
 pub enum VerboseIntensity {
     INFO,
     WARNING,

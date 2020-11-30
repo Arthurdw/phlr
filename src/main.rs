@@ -35,44 +35,6 @@ fn main() {
         )
         .get_matches();
 
-<<<<<<< HEAD
-    let intensity = match matches.occurrences_of("v") {
-        5 => verbose::VerboseIntensity::DEBUG,
-        4 => verbose::VerboseIntensity::CRITICAL,
-        3 => verbose::VerboseIntensity::ERROR,
-        2 => verbose::VerboseIntensity::WARNING,
-        1 => verbose::VerboseIntensity::INFO,
-        0 | _ => verbose::VerboseIntensity::CRITICAL,
-    };
-
-    match intensity {
-        verbose::VerboseIntensity::DEBUG => {
-            printer::info("Currently in mode: DEBUG")
-        }
-        verbose::VerboseIntensity::CRITICAL => {
-            printer::info("Currently in mode: CRITICAL")
-        }
-        verbose::VerboseIntensity::ERROR => {
-            printer::info("Currently in mode: ERROR")
-        }
-        verbose::VerboseIntensity::WARNING => {
-            printer::info("Currently in mode: WARNING")
-        }
-        verbose::VerboseIntensity::INFO => {
-            printer::info("Currently in mode: INFO")
-        }
-    }
-
-    if let Some(matches) = matches.subcommand_matches("generate") {
-        if matches.is_present("source") {
-            generator::generate(matches.value_of("source").expect("output.txt"));
-        } else {
-            printer::error("No source param found.")
-        }
-    } else {
-        printer::error("Please provide a valid subcommand or argument.");
-        printer::error(&format!(
-=======
     let occurences = matches.occurrences_of("v");
 
     let logger = printer::Logger {
@@ -95,7 +57,6 @@ fn main() {
     } else {
         logger.error("Please provide a valid subcommand or argument.");
         logger.error(&format!(
->>>>>>> f423c26 (Improved code.)
             "See `phlr {green}--help{reset}` for further information.",
             green = color::Fg(color::Green),
             reset = style::Reset

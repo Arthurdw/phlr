@@ -39,7 +39,6 @@ fn main() {
                         .long("out")
                         .takes_value(true)
                         .help("The output file.")
-                        // .index(2),
                 ),
         )
         .get_matches();

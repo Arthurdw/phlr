@@ -43,15 +43,8 @@ fn main() {
 
     logger.debug("Successfully created logger object.");
 
-    match logger.intensity.intensity {
-        verbose::VerboseIntensity::DEBUG => logger.info("Currently in mode: DEBUG"),
-        verbose::VerboseIntensity::CRITICAL => logger.info("Currently in mode: CRITICAL"),
-        verbose::VerboseIntensity::ERROR => logger.info("Currently in mode: ERROR"),
-        verbose::VerboseIntensity::WARNING => logger.info("Currently in mode: WARNING"),
-        verbose::VerboseIntensity::INFO => logger.info("Currently in mode: INFO"),
-    }
-
     if let Some(matches) = matches.subcommand_matches("generate") {
+        logger.print_log_mode();
         logger.debug("Sucommand match found with \"generate\".");
         generator::generate(logger, matches.value_of("source").expect("output.txt"));
     } else {

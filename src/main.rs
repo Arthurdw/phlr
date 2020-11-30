@@ -49,8 +49,8 @@ fn main() {
         logger.debug("Sucommand match found with \"generate\".");
         generator::generate(logger, matches.value_of("source").expect("output.txt"), None);
     } else {
-        logger.error("Please provide a valid subcommand or argument.");
-        logger.error(&format!(
+        logger.warn("Please provide a valid subcommand or argument.");
+        logger.warn(&format!(
             "See `phlr {green}--help{reset}` for further information.",
             green = color::Fg(color::Green),
             reset = style::Reset

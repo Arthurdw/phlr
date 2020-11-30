@@ -1,0 +1,10 @@
+[package]
+name = "phlr"
+version = "0.0.1"
+authors = ["Arthurdw <mail.arthurdw@gmail.com>"]
+edition = "2018"
+description = "Generate a hashed dataset from a dataset"
+
+[dependencies]
+clap = "2.33.3"
+termion = "1.5.5"

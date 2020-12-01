@@ -17,7 +17,7 @@ For example:
 
 ```bash
 $ phlr --version
-Pre-Hash Loader/Renderer (phlr) 0.0.1
+Pre-Hash Loader/Renderer (phlr) 0.1.0
 ```
 
 ## Uninstall

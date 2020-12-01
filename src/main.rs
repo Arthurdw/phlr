@@ -11,7 +11,7 @@ mod verbose;
 
 fn main() {
     let matches = App::new("Pre-Hash Loader/Renderer (phlr)")
-        .version("0.0.1")
+        .version("0.1.0")
         .author("Arthurdw <mail.arthurdw@gmail.com>")
         .about("Generate a hashed dataset from a dataset")
         .arg(

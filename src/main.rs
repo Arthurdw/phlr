@@ -11,7 +11,7 @@ mod verbose;
 
 fn main() {
     let matches = App::new("Pre-Hash Loader/Renderer (phlr)")
-        .version("0.1.0")
+        .version("0.1.1")
         .author("Arthurdw <mail.arthurdw@gmail.com>")
         .about("Generate a hashed dataset from a dataset")
         .arg(
@@ -60,7 +60,7 @@ fn main() {
                 .arg(
                     Arg::with_name("method")
                         .short("M")
-                        .long("mathod")
+                        .long("method")
                         .takes_value(true)
                         .help(
                             "The method that should be used to hash. Default is \'sha256\'. Options: sha224, sha256, sha384, sha512, sha512/224, sha512/256",

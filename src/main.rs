@@ -35,10 +35,19 @@ fn main() {
                 )
                 .arg(
                     Arg::with_name("output")
-                        .short("-O")
+                        .short("O")
                         .long("out")
                         .takes_value(true)
-                        .help("The output file.")
+                        .help("The output file."),
+                )
+                .arg(
+                    Arg::with_name("delimiter")
+                        .short("D")
+                        .long("delimiter")
+                        .takes_value(true)
+                        .help(
+                            "The delimiter that is between the password and the hash. DELAULT: ;",
+                        ),
                 ),
         )
         .get_matches();
@@ -58,6 +67,7 @@ fn main() {
             logger,
             matches.value_of("source").expect("input.txt"),
             matches.value_of("output"),
+            matches.value_of("delimiter"),
         );
     } else {
         logger.warn("Please provide a valid subcommand or argument.");

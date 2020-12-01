@@ -20,6 +20,13 @@ fn main() {
                 .multiple(true)
                 .help("The intensity of the verbose."),
         )
+        .arg(
+            Arg::with_name("force")
+                .short("F")
+                .long("force")
+                .takes_value(false)
+                .help("Force the current action. (overrides or appends to any existing files etc)"),
+        )
         .subcommand(
             SubCommand::with_name("generate")
                 .visible_alias("gen")
@@ -30,6 +37,7 @@ fn main() {
                         .long("source")
                         .takes_value(true)
                         .required(true)
+                        .value_name("filename")
                         .help("The input file.")
                         .index(1),
                 )
@@ -46,7 +54,16 @@ fn main() {
                         .long("delimiter")
                         .takes_value(true)
                         .help(
-                            "The delimiter that is between the password and the hash. DELAULT: ;",
+                            "The delimiter that is between the password and the hash. DELAULT: \';\'",
+                        )
+                )
+                .arg(
+                    Arg::with_name("method")
+                        .short("M")
+                        .long("mathod")
+                        .takes_value(true)
+                        .help(
+                            "The method that should be used to hash. Default is \'sha256\'. Options: sha224, sha256, sha384, sha512, sha512/224, sha512/256",
                         ),
                 ),
         )
@@ -60,14 +77,16 @@ fn main() {
 
     logger.debug("Successfully created logger object.");
 
-    if let Some(matches) = matches.subcommand_matches("generate") {
+    if let Some(sub) = matches.subcommand_matches("generate") {
         logger.print_log_mode();
         logger.debug("Sucommand match found with \"generate\".");
         generator::generate(
             logger,
-            matches.value_of("source").expect("input.txt"),
-            matches.value_of("output"),
-            matches.value_of("delimiter"),
+            sub.value_of("source").expect("input.txt"),
+            sub.value_of("output"),
+            sub.value_of("delimiter"),
+            sub.value_of("method"),
+            matches.is_present("force"),
         );
     } else {
         logger.warn("Please provide a valid subcommand or argument.");

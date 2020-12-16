@@ -7,11 +7,12 @@ use termion::{color, style};
 
 mod generator;
 mod printer;
+mod updater;
 mod verbose;
 
 fn main() {
     let matches = App::new("Pre-Hash Loader/Renderer (phlr)")
-        .version("0.1.1")
+        .version("0.2.0")
         .author("Arthurdw <mail.arthurdw@gmail.com>")
         .about("Generate a hashed dataset from a dataset")
         .arg(
@@ -67,6 +68,7 @@ fn main() {
                         ),
                 ),
         )
+        .subcommand(SubCommand::with_name("update").about("Updates phlr"))
         .get_matches();
 
     let occurences = matches.occurrences_of("v");
@@ -88,6 +90,10 @@ fn main() {
             sub.value_of("method"),
             matches.is_present("force"),
         );
+    } else if let Some(_) = matches.subcommand_matches("update") {
+        logger.print_log_mode();
+        logger.debug("Sucommand match found with \"update\".");
+        updater::CommandExecutor { logger: logger }.update();
     } else {
         logger.warn("Please provide a valid subcommand or argument.");
         logger.warn(&format!(

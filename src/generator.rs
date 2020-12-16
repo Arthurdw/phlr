@@ -94,7 +94,6 @@ pub fn generate(
             }
 
             let file = BufReader::new(file);
-            println!("");
             logger.debug("Started writing data to file!");
             for line in file.lines().filter_map(|result| result.ok()) {
                 if line.is_empty() {

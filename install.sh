@@ -1,4 +1,4 @@
-export VERSION=0.1.1
+export VERSION=0.2.0
 
 echo ""
 echo "Fetching phlr v${VERSION} debian package..."

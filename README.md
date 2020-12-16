@@ -30,12 +30,10 @@ $ sudo apt remove phlr
 
 ## Updating
 
-You can easily update by just running the uninstall and install command after eachother.
-So that would be the following.
+You can easily update by just running the update command. The script will do everything by itself.
 
 ```bash
-$ sudo apt remove phlr
-$ sudo curl --proto '=https' -L --tlsv1.2 -sSf https://phlr.arthurdw.com | sh
+$ phlr update
 ```
 
 
